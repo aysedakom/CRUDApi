@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Persona Management System</title>
+<style>
+:root{--navy:#142743;--blue:#2878f0;--ink:#172b4d;--muted:#6b7d98;--line:#dce6f4;--bg:#f3f7fc;--green:#1b9c60;--red:#ee454b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
+.shell{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.sidebar{background:linear-gradient(160deg,#192f50,#101d33);color:white;padding:22px 16px}.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:800;padding:0 6px 26px}.brand-icon{display:grid;place-items:center;background:#2a5b9c;border-radius:12px;width:43px;height:43px;font-size:23px}.nav{display:grid;gap:8px}.nav button{border:0;color:#e7efff;background:transparent;text-align:left;padding:13px 14px;border-radius:9px;font-weight:700;cursor:pointer}.nav button.active,.nav button:hover{background:#2b5fa8;color:#fff}.side-note{margin:34px 7px 0;color:#a9bddb;font-size:12px}
+main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px}.topbar h1{margin:0;font-size:27px}.sub{color:var(--muted);margin-top:3px}.status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{background:#e7f8ef;color:#167747;border:1px solid #b8e9cf;padding:8px 12px;border-radius:9px;font-weight:700;font-size:13px}.endpoint{background:#f6f9fd;border:1px solid var(--line);padding:8px 12px;border-radius:9px;font-size:13px}
+.content{padding:22px;display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.9fr);gap:18px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 3px 15px #1a3b6208}.toolbar{display:flex;gap:10px;margin-bottom:18px}.search{flex:1;min-width:0;border:1px solid #cbd8e9;border-radius:8px;padding:12px 14px;font:inherit}.btn{border:1px solid transparent;border-radius:8px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(.97);transform:translateY(-1px)}.primary{background:var(--blue);color:white}.success{background:var(--green);color:white}.danger{background:var(--red);color:white}.outline{background:white;color:var(--blue);border-color:#8cb7ff}.muted-btn{background:#edf3fb;color:#294566;border-color:#d8e4f3}.table-wrap{overflow:auto;border:1px solid #e2eaf5;border-radius:8px}table{width:100%;border-collapse:collapse;min-width:490px}th{background:#eef3fa;text-align:left;font-weight:800}td,th{padding:13px 12px;border-bottom:1px solid #e5edf7}tr:last-child td{border-bottom:0}.actions{display:flex;gap:7px}.small{padding:7px 10px;font-size:13px}.count{color:var(--muted);font-size:13px;margin-top:18px}.right-col{display:grid;gap:18px}.panel h2{font-size:20px;margin:0 0 18px}.field{display:grid;gap:7px;margin-bottom:16px}.field label{font-weight:700;font-size:13px}.field input,.field select{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:8px;font:inherit;background:#fff}.full{width:100%}.hint{background:#eef6ff;border:1px solid #b8d4ff;color:#234e8e;border-radius:8px;padding:12px;font-size:13px;margin-top:15px}.divider{display:flex;align-items:center;gap:12px;color:var(--muted);margin:17px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.notice{padding:10px 12px;border-radius:8px;margin:0 0 14px;display:none}.notice.show{display:block}.notice.error{background:#fff0f0;color:#a3242a}.notice.ok{background:#eaf8ef;color:#17683e}.api-info{white-space:pre-wrap;background:#f6f9fd;border-radius:8px;padding:14px;overflow-wrap:anywhere}
+#skeleton-surprise{position:fixed!important;inset:0!important;z-index:10000!important;display:none;align-items:center!important;justify-content:center!important;grid-template-columns:none!important;gap:0!important;padding:0!important;background:transparent!important;pointer-events:none}
+#skeleton-surprise.show{display:flex!important;animation:surprisePop .18s ease-out both}
+.skeleton-video{display:block!important;position:relative!important;width:min(94vw,1400px)!important;height:min(88vh,790px)!important;max-width:1400px!important;max-height:88vh!important;margin:auto!important;overflow:hidden;background:transparent;pointer-events:auto;filter:drop-shadow(0 12px 28px #0005)}.skeleton-video iframe{display:block;width:100%;height:100%;border:0;background:transparent}.surprise-copy,.raah{display:none!important}.close-surprise{position:fixed;top:14px;right:14px;z-index:10001;border:1px solid #7e9cbe;border-radius:8px;background:#1e3554;color:white;padding:9px 12px;cursor:pointer;pointer-events:auto}
+@keyframes surprisePop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+@media(max-width:980px){.shell{grid-template-columns:190px 1fr}.content{grid-template-columns:1fr}.topbar{padding:18px}.sidebar{padding:18px 12px}}
+@media(max-width:650px){.shell{display:block}.sidebar{padding:12px}.brand{padding-bottom:12px}.nav{grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;padding:10px 5px;font-size:12px}.side-note{display:none}.topbar{align-items:flex-start;flex-direction:column}.content{padding:12px}.panel{padding:14px}.toolbar{flex-wrap:wrap}.search{flex-basis:100%}#skeleton-surprise{grid-template-columns:none!important;padding:0!important;gap:0!important}.skeleton-video{width:96vw!important;height:78vh!important}.raah,.surprise-copy{display:none!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-icon">🧑‍🚀</span><span>Persona<br>Management System</span></div>
+  <nav class="nav">
+    <button class="active" data-page="users">♟ &nbsp; Users</button>
+    <button data-page="powers">⚡ &nbsp; Powers</button>
+    <button data-page="api">ⓘ &nbsp; API Info</button>
+  </nav>
+  <div class="side-note">A little order for your universe ✨</div>
+</aside>
+<main>
+<header class="topbar"><div><h1 id="page-title">Users</h1><div class="sub" id="page-subtitle">Manage personas using your CRUD API</div></div><div class="status"><span class="pill" id="api-status">● Checking API…</span><span class="endpoint">http://localhost:3000</span></div></header>
+<div class="content" id="main-content">
+<section class="panel">
+  <div id="notice" class="notice"></div>
+  <div class="toolbar"><input class="search" id="search" placeholder="⌕  Search by name or role…"><button class="btn primary" id="new-btn">＋ Add User</button></div>
+  <div class="table-wrap"><table><thead id="table-head"><tr><th>ID</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead><tbody id="records"></tbody></table></div>
+  <div class="count" id="record-count">Loading records…</div>
+</section>
+<aside class="right-col">
+  <section class="panel"><h2 id="form-title">Create / Update User</h2><form id="record-form"><div class="field"><label id="label-one" for="field-one">Name *</label><input id="field-one" required maxlength="100" placeholder="Enter user name"></div><div class="field"><label id="label-two" for="field-two">Role *</label><input id="field-two" required maxlength="100" placeholder="Enter user role"></div><button class="btn success full" type="submit" id="submit-btn">＋ Create User</button><button class="btn muted-btn full" type="button" id="cancel-btn" style="display:none;margin-top:8px">Cancel edit</button></form><div class="divider">OR</div><div class="hint" id="form-hint">Tip: use Edit beside a record to load it into this form.</div></section>
+  <section class="panel"><h2>Bulk Actions</h2><div class="field"><label for="bulk-ids">Record IDs (comma separated)</label><input id="bulk-ids" placeholder="e.g. 1,2,3"></div><button class="btn danger full" id="bulk-delete">▤ Delete Selected</button><p class="sub" style="font-size:12px;margin-bottom:0">Deletion asks for confirmation first.</p></section>
+</aside>
+</div>
+</main>
+</div>
+<div id="skeleton-surprise" aria-live="polite">
+  <div class="skeleton-video"><iframe id="surprise-frame" title="Unexpected skeleton video" src="about:blank" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <button class="close-surprise" id="close-surprise" aria-label="Close surprise">✕</button>
+</div>
+<audio id="delete-oof-audio" preload="auto" src="https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3"></audio>
+<audio id="create-anvil-audio" preload="auto" src="https://www.myinstants.com/media/sounds/anvil-use-minecraft-sound-sound-effect-for-editing.mp3"></audio>
+<script>
+// Play the OOF after a successful delete. The delete click counts as user interaction
+// in most browsers, which helps avoid autoplay restrictions.
+window.playDeleteOof = function () {
+  const audio = document.getElementById('delete-oof-audio');
+  if (!audio) return;
+  audio.pause();
+  audio.currentTime = 0;
+  audio.volume = 1;
+  const playback = audio.play();
+  if (playback && typeof playback.catch === 'function') {
+    playback.catch(async () => {
+      // Retry with a fresh Audio instance in case the preloaded element failed.
+      try {
+        const fallback = new Audio('https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3');
+        fallback.volume = 1;
+        await fallback.play();
+      } catch (error) {
+        console.warn('OOF sound could not play. Check the audio URL and browser permissions.', error);
+      }
+    });
+  }
+};
+window.playCreateAnvil = function () {
+  const audio = document.getElementById('create-anvil-audio');
+  if (!audio) return;
+  audio.pause();
+  audio.currentTime = 0;
+  audio.volume = 1;
+  audio.play().catch(error => console.warn('Anvil sound could not play. Check browser audio permissions.', error));
+};
+</script>
+<script>
+const API='http://localhost:3000';
+let page='users', records=[], editingId=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function notice(message,type='ok'){const n=$('notice');n.textContent=message;n.className='notice show '+type;setTimeout(()=>n.classList.remove('show'),4000)}
+async function request(path,options={}){const r=await fetch(API+path,{...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});const body=await r.json().catch(()=>null);if(!r.ok)throw new Error(body?.message||`Request failed (${r.status})`);return body}
+async function checkApi(){try{await fetch(API+'/users');$('api-status').textContent='● API Online';$('api-status').style.background='#e7f8ef';$('api-status').style.color='#167747'}catch{$('api-status').textContent='● API Offline';$('api-status').style.background='#fff0f0';$('api-status').style.color='#a3242a'}}
+function configurePage(){const users=page==='users';$('page-title').textContent=users?'Users':page==='powers'?'Powers':'API Info';$('page-subtitle').textContent=users?'Manage personas using your CRUD API':page==='powers'?'Manage powers and abilities':'Local API connection details';document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('main-content').style.display=page==='api'?'block':'grid';if(page==='api'){$('main-content').innerHTML='<section class="panel"><h2>API Connection</h2><p><b>Base URL:</b> http://localhost:3000</p><p><b>Users:</b> GET/POST /users, GET/PUT/DELETE /users/:id, PUT/DELETE /users for bulk actions</p><p><b>Powers:</b> GET/POST /powers, GET/PUT /powers/:id</p><p>Data is currently stored in memory and resets when the server restarts.</p><button class="btn primary" onclick="location.reload()">Back to dashboard</button></section>';return}renderForm();loadRecords()}
+async function loadRecords(){if(page==='api')return;try{records=await request('/'+page);if(!Array.isArray(records))records=[];renderRecords();checkApi()}catch(e){records=[];renderRecords();notice('Could not load API data. Start your server with npm run dev.', 'error');$('api-status').textContent='● API Offline'}}
+function renderRecords(){const term=$('search').value.trim().toLowerCase();const filtered=records.filter(r=>Object.values(r).some(v=>String(v).toLowerCase().includes(term)));const power=page==='powers';$('table-head').innerHTML=power?'<tr><th>ID</th><th>Power name</th><th>Type</th><th>Actions</th></tr>':'<tr><th>ID</th><th>Name</th><th>Role</th><th>Actions</th></tr>';$('records').innerHTML=filtered.map(r=>`<tr><td>${esc(r.id)}</td><td>${esc(power?(r.powerName??r.name):r.name)}</td><td>${esc(power?r.type:r.role)}</td><td><div class="actions"><button class="btn outline small" data-edit="${r.id}">✎ Edit</button><button class="btn danger small" data-delete="${r.id}">▤ Delete</button></div></td></tr>`).join('');$('record-count').textContent=`Showing ${filtered.length} of ${records.length} ${power?'powers':'users'}`;$('new-btn').textContent=power?'＋ Add Power':'＋ Add User'}
+function renderForm(){const power=page==='powers';$('form-title').textContent=`Create / Update ${power?'Power':'User'}`;$('label-one').textContent=power?'Power name *':'Name *';$('label-two').textContent=power?'Type *':'Role *';$('field-one').placeholder=power?'Enter power name':'Enter user name';$('field-two').placeholder=power?'Enter power type':'Enter user role';$('submit-btn').textContent=`＋ ${editingId?'Update': 'Create'} ${power?'Power':'User'}`;$('cancel-btn').style.display=editingId?'block':'none'}
+function clearForm(){editingId=null;$('record-form').reset();renderForm()}
+$('record-form').addEventListener('submit',async e=>{e.preventDefault();const power=page==='powers';const payload=power?{powerName:$('field-one').value.trim(),name:$('field-one').value.trim(),type:$('field-two').value.trim()}:{name:$('field-one').value.trim(),role:$('field-two').value.trim()};try{if(editingId){await request(`/${page}/${editingId}`,{method:'PUT',body:JSON.stringify(payload)});notice('Record updated successfully!')}else{await request('/'+page,{method:'POST',body:JSON.stringify(payload)});window.playCreateAnvil?.();notice('Record created successfully!')}clearForm();loadRecords()}catch(err){notice(err.message,'error')}});
+$('records').addEventListener('click',async e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit){const r=records.find(x=>x.id===Number(edit.dataset.edit));if(!r)return;editingId=r.id;$('field-one').value=page==='powers'?(r.powerName??r.name):r.name;$('field-two').value=page==='powers'?r.type:r.role;renderForm();$('field-one').focus()}if(del){const id=Number(del.dataset.delete);if(!confirm(`⚠️ Are you sure you want to permanently delete this ${page==='powers'?'power':'user'} (#${id})? This action cannot be undone.`))return;try{if(page==='users')await request('/users/'+id,{method:'DELETE'});else throw new Error('The current API does not yet have a working single-power DELETE /powers/:id route.');window.playDeleteOof?.();notice('Record deleted.');if(editingId===id)clearForm();loadRecords()}catch(err){notice(err.message,'error')}}});
+$('new-btn').addEventListener('click',()=>{clearForm();$('field-one').focus()});$('cancel-btn').addEventListener('click',clearForm);$('search').addEventListener('input',renderRecords);
+$('bulk-delete').addEventListener('click',async()=>{const ids=$('bulk-ids').value.split(',').map(v=>Number(v.trim())).filter(Number.isInteger).filter(v=>v>0);if(!ids.length)return notice('Enter one or more valid IDs.','error');if(!confirm(`⚠️ Are you sure you want to permanently delete ${ids.length} selected record(s)? This action cannot be undone.`))return;try{if(page!=='users')throw new Error('Bulk delete is currently supported for users only in this API.');await request('/users',{method:'DELETE',body:JSON.stringify({ids})});$('bulk-ids').value='';window.playDeleteOof?.();notice('Selected users deleted.');loadRecords()}catch(e){notice(e.message,'error')}});
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{page=b.dataset.page;configurePage()}));
+configurePage();checkApi();
+</script>
+<script src="./skeleton-surprise.js"></script>
+</body></html>
