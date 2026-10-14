@@ -1,3 +1,5 @@
+A simple full-stack CRUD API built with Node.js, Express, and Vanilla JavaScript. Features a custom web UI for managing users and supports single and bulk data creation.
+
 This project is a lightweight, full-stack application demonstrating fundamental RESTful API architecture. It uses an in-memory data store (no database required) to manage a list of users.
 
 Features:
