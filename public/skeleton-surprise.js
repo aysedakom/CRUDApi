@@ -1,73 +1,100 @@
-/* Random skeleton surprise + delete sound effects. */
+/* Offline skeleton video + local RAAH sound. No extra shaking effect is applied. */
 (() => {
-  const VIDEO_ID = 'pyBEvMXVfL0';
-  const MIN_DELAY_MS = 45_000;
-  const MAX_DELAY_MS = 180_000;
+  const MIN_DELAY_MS = 15_000;
+  const MAX_DELAY_MS = 60_000;
   const panel = document.getElementById('skeleton-surprise');
-  const frame = document.getElementById('surprise-frame');
   const close = document.getElementById('close-surprise');
-  if (!panel || !frame || !close) return;
+  const video = document.getElementById('skeleton-animation');
+  const raahAudio = document.getElementById('skeleton-raah-audio');
+  if (!panel || !close || !video) return;
 
-  let timeoutId;
+  let timeoutId = 0;
+  let hideId = 0;
   let dismissed = false;
-  let player;
+  let firstAppearance = true;
+  let audioUnlocked = false;
 
-  function scheduleSurprise() {
-    const delay = Math.floor(Math.random() * (MAX_DELAY_MS - MIN_DELAY_MS + 1)) + MIN_DELAY_MS;
-    timeoutId = window.setTimeout(showSurprise, delay);
+  // Unlock audible playback from a real user gesture. Muted playback alone
+  // does not reliably authorize later unmuted playback in Chrome.
+  function unlockAudio() {
+    if (!raahAudio || audioUnlocked) return;
+    raahAudio.pause();
+    raahAudio.currentTime = 0;
+    raahAudio.muted = false;
+    raahAudio.volume = 0.001;
+    const prime = raahAudio.play();
+    if (prime && typeof prime.then === 'function') {
+      prime.then(() => {
+        window.setTimeout(() => {
+          raahAudio.pause();
+          raahAudio.currentTime = 0;
+          raahAudio.volume = 1;
+          audioUnlocked = true;
+        }, 80);
+      }).catch(() => {
+        raahAudio.pause();
+        raahAudio.currentTime = 0;
+        raahAudio.volume = 1;
+      });
+    } else {
+      raahAudio.pause();
+      raahAudio.currentTime = 0;
+      raahAudio.volume = 1;
+      audioUnlocked = true;
+    }
   }
+  document.addEventListener('pointerdown', unlockAudio, { passive: true });
+  document.addEventListener('keydown', unlockAudio);
 
+  function stopMedia() {
+    video.pause();
+    try { video.currentTime = 0; } catch (_) {}
+    if (raahAudio) { raahAudio.pause(); raahAudio.currentTime = 0; }
+  }
   function hideSurprise() {
-    dismissed = true;
-    window.clearTimeout(timeoutId);
+    window.clearTimeout(hideId);
     panel.classList.remove('show');
-    if (player && typeof player.stopVideo === 'function') player.stopVideo();
-    frame.src = 'about:blank';
+    stopMedia();
+    scheduleSurprise();
   }
-
   function showSurprise() {
     if (dismissed) return;
     panel.classList.add('show');
-    panel.setAttribute('aria-label', 'Unexpected skeleton video');
-    frame.src = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=0&playsinline=1&rel=0&enablejsapi=1`;
-    // YouTube's iframe API lets the surprise disappear as soon as playback ends.
-    if (window.YT && window.YT.Player) setupPlayer();
-    else {
-      const previous = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (typeof previous === 'function') previous();
-        setupPlayer();
-      };
-      if (!document.querySelector('script[data-youtube-iframe-api]')) {
-        const script = document.createElement('script');
-        script.src = 'https://www.youtube.com/iframe_api';
-        script.dataset.youtubeIframeApi = 'true';
-        document.head.appendChild(script);
-      }
+    video.pause();
+    try { video.currentTime = 0; } catch (_) {}
+    const videoPlay = video.play();
+    if (videoPlay && typeof videoPlay.catch === 'function') videoPlay.catch(err => console.warn('Skeleton video could not play. Check public/videos/skeleton.mp4.', err));
+    if (raahAudio) {
+      raahAudio.pause();
+      raahAudio.currentTime = 0;
+      raahAudio.volume = 1;
+      raahAudio.muted = false;
+      const soundPlay = raahAudio.play();
+      if (soundPlay && typeof soundPlay.catch === 'function') soundPlay.catch(err => console.warn('RAAH audio could not play. Check public/sounds/raah.mp3; click the page once to enable audio.', err));
     }
+    // Match the local video duration; the ended event also closes it.
+    hideId = window.setTimeout(hideSurprise, 180000);
   }
-
-  function setupPlayer() {
-    if (dismissed || player) return;
-    try {
-      player = new YT.Player('surprise-frame', {
-        events: { onStateChange: event => { if (event.data === YT.PlayerState.ENDED) hideSurprise(); } }
-      });
-    } catch (_) {
-      // If the API cannot load, the close button remains available.
-    }
+  function scheduleSurprise() {
+    if (dismissed) return;
+    const delay = firstAppearance ? 180000 : Math.floor(Math.random() * (MAX_DELAY_MS - MIN_DELAY_MS + 1)) + MIN_DELAY_MS;
+    firstAppearance = false;
+    timeoutId = window.setTimeout(showSurprise, delay);
   }
-
-  close.addEventListener('click', hideSurprise);
+  video.addEventListener('ended', hideSurprise);
+  close.addEventListener('click', () => {
+    dismissed = true;
+    window.clearTimeout(timeoutId);
+    window.clearTimeout(hideId);
+    panel.classList.remove('show');
+    stopMedia();
+  });
   scheduleSurprise();
 })();
 
-// Called by the dashboard after a deletion succeeds.
 window.playDeleteOof = function () {
   const audio = document.getElementById('delete-oof-audio');
   if (!audio) return;
-  audio.currentTime = 0;
-  audio.play().catch(() => {
-    // Browsers can block audio until the user has interacted with the page.
-  });
+  audio.pause(); audio.currentTime = 0; audio.volume = 1;
+  audio.play().catch(error => console.warn('Check public/sounds/oof.mp3 and browser audio permissions.', error));
 };

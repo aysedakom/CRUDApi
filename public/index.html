@@ -10,13 +10,35 @@
 .shell{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.sidebar{background:linear-gradient(160deg,#192f50,#101d33);color:white;padding:22px 16px}.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:800;padding:0 6px 26px}.brand-icon{display:grid;place-items:center;background:#2a5b9c;border-radius:12px;width:43px;height:43px;font-size:23px}.nav{display:grid;gap:8px}.nav button{border:0;color:#e7efff;background:transparent;text-align:left;padding:13px 14px;border-radius:9px;font-weight:700;cursor:pointer}.nav button.active,.nav button:hover{background:#2b5fa8;color:#fff}.side-note{margin:34px 7px 0;color:#a9bddb;font-size:12px}
 main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px}.topbar h1{margin:0;font-size:27px}.sub{color:var(--muted);margin-top:3px}.status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{background:#e7f8ef;color:#167747;border:1px solid #b8e9cf;padding:8px 12px;border-radius:9px;font-weight:700;font-size:13px}.endpoint{background:#f6f9fd;border:1px solid var(--line);padding:8px 12px;border-radius:9px;font-size:13px}
 .content{padding:22px;display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.9fr);gap:18px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 3px 15px #1a3b6208}.toolbar{display:flex;gap:10px;margin-bottom:18px}.search{flex:1;min-width:0;border:1px solid #cbd8e9;border-radius:8px;padding:12px 14px;font:inherit}.btn{border:1px solid transparent;border-radius:8px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(.97);transform:translateY(-1px)}.primary{background:var(--blue);color:white}.success{background:var(--green);color:white}.danger{background:var(--red);color:white}.outline{background:white;color:var(--blue);border-color:#8cb7ff}.muted-btn{background:#edf3fb;color:#294566;border-color:#d8e4f3}.table-wrap{overflow:auto;border:1px solid #e2eaf5;border-radius:8px}table{width:100%;border-collapse:collapse;min-width:490px}th{background:#eef3fa;text-align:left;font-weight:800}td,th{padding:13px 12px;border-bottom:1px solid #e5edf7}tr:last-child td{border-bottom:0}.actions{display:flex;gap:7px}.small{padding:7px 10px;font-size:13px}.count{color:var(--muted);font-size:13px;margin-top:18px}.right-col{display:grid;gap:18px}.panel h2{font-size:20px;margin:0 0 18px}.field{display:grid;gap:7px;margin-bottom:16px}.field label{font-weight:700;font-size:13px}.field input,.field select{width:100%;padding:12px;border:1px solid #cbd8e9;border-radius:8px;font:inherit;background:#fff}.full{width:100%}.hint{background:#eef6ff;border:1px solid #b8d4ff;color:#234e8e;border-radius:8px;padding:12px;font-size:13px;margin-top:15px}.divider{display:flex;align-items:center;gap:12px;color:var(--muted);margin:17px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.notice{padding:10px 12px;border-radius:8px;margin:0 0 14px;display:none}.notice.show{display:block}.notice.error{background:#fff0f0;color:#a3242a}.notice.ok{background:#eaf8ef;color:#17683e}.api-info{white-space:pre-wrap;background:#f6f9fd;border-radius:8px;padding:14px;overflow-wrap:anywhere}
-#skeleton-surprise{position:fixed!important;inset:0!important;z-index:10000!important;display:none;align-items:center!important;justify-content:center!important;grid-template-columns:none!important;gap:0!important;padding:0!important;background:transparent!important;pointer-events:none}
+#skeleton-surprise{position:fixed!important;inset:0!important;z-index:10000!important;display:none;align-items:center!important;justify-content:center!important;gap:0!important;padding:0!important;background:rgba(5,10,20,.72)!important;pointer-events:none}
 #skeleton-surprise.show{display:flex!important;animation:surprisePop .18s ease-out both}
-.skeleton-video{display:block!important;position:relative!important;width:min(94vw,1400px)!important;height:min(88vh,790px)!important;max-width:1400px!important;max-height:88vh!important;margin:auto!important;overflow:hidden;background:transparent;pointer-events:auto;filter:drop-shadow(0 12px 28px #0005)}.skeleton-video iframe{display:block;width:100%;height:100%;border:0;background:transparent}.surprise-copy,.raah{display:none!important}.close-surprise{position:fixed;top:14px;right:14px;z-index:10001;border:1px solid #7e9cbe;border-radius:8px;background:#1e3554;color:white;padding:9px 12px;cursor:pointer;pointer-events:auto}
+.skeleton-video{display:grid;place-items:center;position:relative;width:min(92vw,760px);height:min(78vh,620px);margin:auto;overflow:hidden;background:transparent;pointer-events:none;filter:drop-shadow(0 12px 28px #0005)}.local-skeleton{display:block;width:100%;height:100%;object-fit:contain;animation:none;transform:none;transform-origin:50% 70%}.surprise-copy,.raah{display:none!important}.close-surprise{position:fixed;top:14px;right:14px;z-index:10001;border:1px solid #7e9cbe;border-radius:8px;background:#1e3554;color:white;padding:9px 12px;cursor:pointer;pointer-events:auto}
 @keyframes surprisePop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes mouthShout{from{transform:scaleY(.55)}to{transform:scaleY(1.45)}}
+@keyframes wordPop{from{transform:scale(.92) rotate(-3deg)}to{transform:scale(1.08) rotate(3deg)}}
 @media(max-width:980px){.shell{grid-template-columns:190px 1fr}.content{grid-template-columns:1fr}.topbar{padding:18px}.sidebar{padding:18px 12px}}
-@media(max-width:650px){.shell{display:block}.sidebar{padding:12px}.brand{padding-bottom:12px}.nav{grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;padding:10px 5px;font-size:12px}.side-note{display:none}.topbar{align-items:flex-start;flex-direction:column}.content{padding:12px}.panel{padding:14px}.toolbar{flex-wrap:wrap}.search{flex-basis:100%}#skeleton-surprise{grid-template-columns:none!important;padding:0!important;gap:0!important}.skeleton-video{width:96vw!important;height:78vh!important}.raah,.surprise-copy{display:none!important}}
+@media(max-width:650px){.shell{display:block}.sidebar{padding:12px}.brand{padding-bottom:12px}.nav{grid-template-columns:repeat(3,1fr)}.nav button{text-align:center;padding:10px 5px;font-size:12px}.side-note{display:none}.topbar{align-items:flex-start;flex-direction:column}.content{padding:12px}.panel{padding:14px}.toolbar{flex-wrap:wrap}.search{flex-basis:100%}#skeleton-surprise{padding:0!important;gap:0!important}.skeleton-video{width:96vw;height:76vh}.local-skeleton{width:90vw;height:72vh}.raah,.surprise-copy{display:none!important}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+/* Desktop-pet black cat (original sprites by carysaurus) */
+#desktop-cat{
+  position:fixed;left:0;bottom:0;width:96px;height:96px;z-index:90;
+  pointer-events:none;image-rendering:pixelated;
+  background-image:url("./cat-assets/Black-Idle.png");background-repeat:no-repeat;
+  background-size:1152px 96px;background-position:0 0;
+  transform:translateX(0);will-change:transform,background-position;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.18));
+}
+#desktop-cat.running{background-image:url("./cat-assets/Black-Run.png");background-size:576px 96px;animation:cat-run .62s steps(6) infinite}
+#desktop-cat.idling{background-image:url("./cat-assets/Black-Idle.png");background-size:1152px 96px;animation:cat-idle 1.2s steps(12) infinite}
+#desktop-cat.loaf{animation:cat-idle 1.2s steps(12) infinite,cat-loaf 2.8s ease-in-out}
+@keyframes cat-run{from{background-position:0 0}to{background-position:-576px 0}}
+@keyframes cat-idle{from{background-position:0 0}to{background-position:-1152px 0}}
+@keyframes cat-hop{0%{translate:0 0}18%{translate:0 -18px}42%{translate:0 -86px}58%{translate:0 -112px}76%{translate:0 -72px}92%{translate:0 -18px}100%{translate:0 0}}
+@keyframes cat-loaf{0%,100%{translate:0 0}35%,65%{translate:0 5px}}
+@media(prefers-reduced-motion:reduce){#desktop-cat{animation:none!important}}
+@media(max-width:600px){#desktop-cat{width:72px;height:72px;background-size:864px 72px}#desktop-cat.running{background-size:432px 72px}#desktop-cat.idling{background-size:864px 72px}}
+
 </style>
 </head>
 <body>
@@ -26,9 +48,9 @@ main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);pad
   <nav class="nav">
     <button class="active" data-page="users">♟ &nbsp; Users</button>
     <button data-page="powers">⚡ &nbsp; Powers</button>
-    <button data-page="api">ⓘ &nbsp; API Info</button>
+    <!--<button data-page="api">ⓘ &nbsp; API Info</button>-->
   </nav>
-  <div class="side-note">A little order for your universe ✨</div>
+  <div class="side-note">Wait for a Surprise</div>
 </aside>
 <main>
 <header class="topbar"><div><h1 id="page-title">Users</h1><div class="sub" id="page-subtitle">Manage personas using your CRUD API</div></div><div class="status"><span class="pill" id="api-status">● Checking API…</span><span class="endpoint">http://localhost:3000</span></div></header>
@@ -46,12 +68,15 @@ main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);pad
 </div>
 </main>
 </div>
-<div id="skeleton-surprise" aria-live="polite">
-  <div class="skeleton-video"><iframe id="surprise-frame" title="Unexpected skeleton video" src="about:blank" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<div id="skeleton-surprise" aria-live="polite" aria-label="Animated skeleton surprise">
+  <div class="skeleton-video" aria-hidden="true">
+    <video class="local-skeleton" id="skeleton-animation" src="/videos/skeleton.mp4" muted playsinline preload="auto" aria-label="Skeleton animation"></video>
+  </div>
   <button class="close-surprise" id="close-surprise" aria-label="Close surprise">✕</button>
 </div>
-<audio id="delete-oof-audio" preload="auto" src="https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3"></audio>
-<audio id="create-anvil-audio" preload="auto" src="https://www.myinstants.com/media/sounds/anvil-use-minecraft-sound-sound-effect-for-editing.mp3"></audio>
+<audio id="delete-oof-audio" preload="auto" src="/sounds/oof.mp3"></audio>
+<audio id="create-anvil-audio" preload="auto" src="/sounds/anvil.mp3"></audio>
+<audio id="skeleton-raah-audio" preload="auto" src="/sounds/raah.mp3"></audio>
 <script>
 // Play the OOF after a successful delete. The delete click counts as user interaction
 // in most browsers, which helps avoid autoplay restrictions.
@@ -61,19 +86,7 @@ window.playDeleteOof = function () {
   audio.pause();
   audio.currentTime = 0;
   audio.volume = 1;
-  const playback = audio.play();
-  if (playback && typeof playback.catch === 'function') {
-    playback.catch(async () => {
-      // Retry with a fresh Audio instance in case the preloaded element failed.
-      try {
-        const fallback = new Audio('https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3');
-        fallback.volume = 1;
-        await fallback.play();
-      } catch (error) {
-        console.warn('OOF sound could not play. Check the audio URL and browser permissions.', error);
-      }
-    });
-  }
+  audio.play().catch(error => console.warn('Local OOF sound could not play. Check public/sounds/oof.mp3 and browser audio permissions.', error));
 };
 window.playCreateAnvil = function () {
   const audio = document.getElementById('create-anvil-audio');
@@ -81,7 +94,7 @@ window.playCreateAnvil = function () {
   audio.pause();
   audio.currentTime = 0;
   audio.volume = 1;
-  audio.play().catch(error => console.warn('Anvil sound could not play. Check browser audio permissions.', error));
+  audio.play().catch(error => console.warn('Local anvil sound could not play. Check public/sounds/anvil.mp3 and browser audio permissions.', error));
 };
 </script>
 <script>
@@ -104,5 +117,7 @@ $('bulk-delete').addEventListener('click',async()=>{const ids=$('bulk-ids').valu
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{page=b.dataset.page;configurePage()}));
 configurePage();checkApi();
 </script>
+<div id="desktop-cat" class="idling" aria-hidden="true" title="Black cat pet"></div>
+<script src="./desktop-cat.js"></script>
 <script src="./skeleton-surprise.js"></script>
 </body></html>
