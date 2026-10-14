@@ -91,7 +91,7 @@ app.post('/users', (req, res) => {
 //single 'di pwede mag mingle
 app.delete('/users/:id', (req, res) => {
     const userId = parseInt(req.params.id);
-    const exists = users.some(u => u.id !== userId);
+    const exists = users.some(u => u.id === userId);
 
     if (!exists) {
         return res.status(404).json({ message: "Persona doesn't exist" });
