@@ -1,13 +1,86 @@
-A simple full-stack CRUD API built with Node.js, Express, and Vanilla JavaScript. Features a custom web UI for managing users and supports single and bulk data creation.
+# Persona Management System (CRUD API)
 
-This project is a lightweight, full-stack application demonstrating fundamental RESTful API architecture. It uses an in-memory data store (no database required) to manage a list of users.
+A simple full-stack CRUD application built with Node.js, Express, and Vanilla JavaScript. It manages **Users (personas)** and **Powers** through a REST API and a custom web UI. Data is stored in memory, so no database is required.
 
-Features:
+## Features
 
-1. Full CRUD Operations: Create, Read, Update, and Delete users via standard HTTP methods (POST, GET, PUT, DELETE).
+- **Full CRUD** for users and powers using standard HTTP methods (`GET`, `POST`, `PUT`, `DELETE`).
+- **Bulk operations:** create, update, and delete multiple records in a single request.
+- **Custom frontend:** a responsive UI built with vanilla HTML, CSS, and the Fetch API. No Postman needed.
+- **Static serving:** Express serves both the API and the frontend from one port.
 
-2. CRUD Bulking: Includes an endpoint to create multiple user records in a single request (accepting JSON arrays).
+## Tech Stack
 
-3. Custom Frontend UI: A clean, responsive web interface built with vanilla HTML, CSS, and JavaScript (using the Fetch API) to interact with the backend without needing external API clients like Postman.
+- Node.js (ES modules)
+- Express 5
+- Nodemon (development)
+- Vanilla HTML / CSS / JavaScript
 
-4. Express Static Serving: The backend serves both the API endpoints and the frontend static files.
+## Getting Started
+
+```bash
+git clone https://github.com/aysedakom/CRUDApi.git
+cd CRUDApi
+npm install
+npm run serve
+```
+
+Then open:
+
+- Frontend: http://localhost:3000/index.html
+- API: http://localhost:3000
+
+> Data resets whenever the server restarts.
+
+## API Endpoints
+
+### Users
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/users` | List all users |
+| GET | `/users/:id` | Get a single user |
+| POST | `/users` | Create a user, or an array of users |
+| PUT | `/users/:id` | Update a single user |
+| PUT | `/users` | Bulk update (array of objects with `id`) |
+| DELETE | `/users/:id` | Delete a single user |
+| DELETE | `/users` | Bulk delete (body: `{ "ids": [1, 2] }`) |
+
+### Powers
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/powers` | List all powers |
+| GET | `/powers/:id` | Get a single power |
+| POST | `/powers` | Create a power, or an array of powers |
+| PUT | `/powers/:id` | Update a power |
+| DELETE | `/powers/:id` | Delete a single power |
+| DELETE | `/powers` | Bulk delete (body: `{ "ids": [1, 2] }`) |
+
+### Data Shapes
+
+```json
+// User
+{ "id": 1, "name": "Loki", "role": "Hero" }
+
+// Power
+{ "id": 1, "powerName": "Illusion Casting", "type": "Magic" }
+```
+
+## Project Structure
+
+```
+CRUDApi/
+├── index.js        # Express server and API routes
+├── package.json
+└── public/
+    ├── index.html  # Frontend UI
+    └── skeleton-surprise.js
+```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run serve` | Start the server with nodemon |
+| `npm run dev` | Same as `serve` |

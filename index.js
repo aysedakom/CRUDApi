@@ -133,7 +133,7 @@ app.post('/powers', (req, res) => {
         let currentId = getNextId(powers);
         const newPowers = req.body.map(item => ({
             id: currentId++,
-            name: item.name,
+            powerName: item.powerName || item.name,
             type: item.type
         }));
         powers.push(...newPowers);
@@ -141,7 +141,7 @@ app.post('/powers', (req, res) => {
     }
     const newPower = {
         id: getNextId(powers),
-        name: req.body.name,
+        powerName: req.body.powerName || req.body.name,
         type: req.body.type
     };
     powers.push(newPower);
@@ -158,13 +158,13 @@ app.put('/powers/:id', (req, res) => {
 });
 
 //IF si higher being gusto mag alis ng specific power ng isang persona
-app.delete('/powers', (req, res) => {
+app.delete('/powers/:id', (req, res) => {
     const powerId = parseInt(req.params.id);
     const exists = powers.some(p => p.id === powerId);
 
     if (!exists) return res.status(404).json({ message: "Walang ganiyang kapangyarihan sabi ni Higher Being" });
 
-    powers = powers.filter(p => p.id === powerId);
+    powers = powers.filter(p => p.id !== powerId);
     res.json({ message: "Power terminated sabi ni Thanos" })
 });
 //IF si higher being gustong alisin ang more than one power
