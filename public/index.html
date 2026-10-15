@@ -39,18 +39,254 @@ main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);pad
 @media(prefers-reduced-motion:reduce){#desktop-cat{animation:none!important}}
 @media(max-width:600px){#desktop-cat{width:72px;height:72px;background-size:864px 72px}#desktop-cat.running{background-size:432px 72px}#desktop-cat.idling{background-size:864px 72px}}
 
+
+/* Pastel anime dashboard refresh */
+:root{--navy:#171d48;--blue:#6864ff;--ink:#202957;--muted:#6676b4;--line:#dce4ff;--bg:#f2f6ff;--green:#16b981;--red:#ff4f83}
+body{background:linear-gradient(135deg,#f8f5ff,#edf6ff 60%,#fff5fc);color:var(--ink)}
+.shell{grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+.sidebar{background:linear-gradient(160deg,#171b42,#242d68);padding:26px 18px;position:relative;overflow:hidden}
+.brand{font-size:20px;line-height:1.15;align-items:center;padding-bottom:28px}.brand-icon{width:58px;height:58px;border-radius:18px;background:#fff;color:#5f62e8;box-shadow:0 8px 24px #080d342b;font-size:28px}
+.nav{gap:8px}.nav button{padding:15px 16px;border-radius:13px;font-size:15px}.nav button.active,.nav button:hover{background:linear-gradient(100deg,#7772ff,#4e82ff);box-shadow:0 7px 18px #5d6aff3b}
+.side-note{position:absolute;bottom:30px;left:24px;right:24px;padding:18px;border:1px solid #ffffff20;border-radius:18px;background:#ffffff0b;color:#cbd5ff;line-height:1.8}
+.topbar{background:linear-gradient(110deg,#fffaff,#eaf3ff);padding:24px 30px;border-bottom:1px solid #d8dcff}
+.topbar h1{font-size:29px;letter-spacing:-.6px}.topbar h1:before{content:"👋 ";font-size:27px}.sub{color:#6474b5}
+.content{padding:24px;grid-template-columns:minmax(0,1.75fr) minmax(290px,.82fr);gap:20px}
+.panel{border:1px solid #dce3ff;border-radius:22px;padding:22px;background:#ffffffed;box-shadow:0 8px 28px #6277bd13}
+.panel h2{font-size:21px}.toolbar{gap:12px}.search,.field input,.field select{border:1px solid #d9e2ff;border-radius:13px;background:#fbfcff;padding:13px 15px}.btn{border-radius:12px;padding:12px 15px}.primary{background:linear-gradient(110deg,#7b64ff,#547bff)}.success{background:linear-gradient(110deg,#35c7b6,#23b6a9)}.danger{background:#fff2f6;color:#f33d77;border-color:#ff8ab0}.outline{background:#f1f5ff;color:#426eff;border-color:#a6bcff}.muted-btn{border-radius:12px}
+.table-wrap{border:1px solid #e0e7ff;border-radius:16px}table{min-width:560px}th{background:#f0f2ff;color:#303a7a}td,th{padding:15px 12px;border-bottom:1px solid #edf0ff}tbody tr:nth-child(even){background:#fafbff}tbody tr:hover{background:#f3f5ff}.actions{flex-wrap:wrap}.count{margin-top:18px}
+.avatar-cell{display:flex;align-items:center;gap:10px;min-width:145px}.persona-avatar{width:42px;height:42px;flex:none;object-fit:cover;border-radius:50%;border:2px solid #e5e8ff;background:#f2f3ff;box-shadow:0 2px 8px #384a8b15}
+.avatar-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:8px}.avatar-choice{border:2px solid transparent;border-radius:13px;padding:3px;background:#f5f6ff;cursor:pointer;aspect-ratio:1;overflow:hidden}.avatar-choice img{width:100%;height:100%;object-fit:cover;border-radius:9px}.avatar-choice.selected{border-color:#6e70ff;box-shadow:0 0 0 3px #7772ff20}.avatar-upload{font-size:12px;color:#6573ac;margin-top:8px}.avatar-preview{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #dfe3ff}
+#desktop-cat{pointer-events:auto;cursor:grab;touch-action:none;z-index:9999;user-select:none;-webkit-user-drag:none;filter:drop-shadow(0 4px 3px #171d4833)}
+#desktop-cat.dragging{cursor:grabbing;animation:none!important;transition:none}
+@media(max-width:980px){.shell{grid-template-columns:220px minmax(0,1fr)}.content{grid-template-columns:1fr}.sidebar{padding:20px 13px}}
+@media(max-width:650px){.shell{display:block}.sidebar{padding:12px}.brand{padding-bottom:12px}.side-note{display:none}.content{padding:12px}.panel{padding:15px}.avatar-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+
+/* Reference-inspired anime scenery: cloud sky, stars, mountain silhouettes, and mascots */
+body{background:linear-gradient(180deg,#eaf2ff 0%,#f8f5ff 34%,#f5f8ff 100%);position:relative}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:
+ radial-gradient(ellipse at 7% 8%,#fff 0 5%,transparent 16%),
+ radial-gradient(ellipse at 30% 4%,#fff 0 6%,transparent 17%),
+ radial-gradient(ellipse at 63% 7%,#d9e8ff 0 7%,transparent 18%),
+ radial-gradient(ellipse at 93% 12%,#fff 0 5%,transparent 15%),
+ linear-gradient(180deg,#e6efff 0%,#f7f5ff 55%,#f8fbff 100%)}
+.sidebar{isolation:isolate;background:linear-gradient(160deg,#171b42 0%,#222a63 72%,#303b7b 100%)}
+.sidebar:before{content:"✦　　✧　　⋆\A　　✧　　✦";white-space:pre;position:absolute;left:24px;top:38%;color:#9ca9ff;line-height:3.5;font-size:17px;opacity:.85;z-index:-1}
+.sidebar:after{content:"";position:absolute;z-index:-1;left:-12%;right:-12%;bottom:-2px;height:145px;background:linear-gradient(145deg,transparent 0 18%,#283777 18% 36%,transparent 36%),linear-gradient(35deg,#202d68 0 30%,transparent 30%),linear-gradient(150deg,transparent 0 40%,#36468a 40% 65%,#293775 65%);clip-path:polygon(0 60%,12% 40%,23% 62%,38% 25%,53% 61%,68% 35%,82% 58%,100% 30%,100% 100%,0 100%);opacity:.9}
+.brand{position:relative;z-index:1;min-height:95px;padding-left:104px!important}.brand-icon{position:absolute;left:4px;top:0;width:88px;height:88px;border-radius:22px;overflow:hidden;background:#fff url('/profiles/maomao.jpg') center/cover no-repeat;color:transparent;font-size:0;border:2px solid #d8dcff}
+.brand-icon:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 2px #ffffff55}
+.side-note{min-height:190px;padding-top:130px!important;background:linear-gradient(180deg,transparent,#ffffff08)!important;overflow:visible}
+.side-note:before{content:"";position:absolute;bottom:64px;left:14px;width:150px;height:170px;background:url('/profiles/Rikka Takanashi.jpg') center 25%/cover no-repeat;border-radius:70px 70px 18px 18px;opacity:.98;filter:drop-shadow(0 8px 10px #080d4b55);border:2px solid #dfe3ff}
+.side-note:after{content:"Small steps ✧\\A big dreams! ♡";white-space:pre;position:absolute;left:12px;bottom:12px;color:#d6d0ff;font-size:16px;font-weight:800;font-style:italic;transform:rotate(-5deg)}
+.topbar{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(105deg,#fffaffed,#e8f2ffed 78%,#f7f3ffed);min-height:105px}
+.topbar:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 18% 115%,#fff 0 13%,transparent 14%),radial-gradient(ellipse at 31% 110%,#fff 0 16%,transparent 17%),radial-gradient(ellipse at 58% 120%,#d7e7ff 0 18%,transparent 19%),radial-gradient(ellipse at 79% 115%,#fff 0 13%,transparent 14%);opacity:.9}
+.topbar:after{content:"";position:absolute;z-index:0;right:22%;bottom:-5px;width:90px;height:80px;background:url('/profiles/Anna Yanami.jpg') center/cover no-repeat;border-radius:50% 50% 12px 12px;opacity:.14;pointer-events:none}
+.content{position:relative}
+.content:after{content:"";position:absolute;z-index:0;right:calc(100% - 65%);bottom:4px;width:150px;height:142px;background:url('/profiles/tokisaki kurumi.jpg') center/cover no-repeat;border-radius:50% 50% 20px 20px;opacity:.11;pointer-events:none}
+.panel{position:relative;z-index:1;background:#ffffffed;backdrop-filter:blur(5px)}
+.right-col .panel:first-child{background:linear-gradient(145deg,#fff 0%,#f9f7ff 100%)}
+.right-col .panel:first-child:after{content:"✧";position:absolute;right:17px;top:8px;color:#a5a8ff;font-size:32px;pointer-events:none}
+#desktop-cat{z-index:9999}
+@media(max-width:650px){.brand{min-height:56px;padding-left:66px!important}.brand-icon{width:54px;height:54px}.side-note:before,.side-note:after{display:none}.side-note{min-height:0;padding:10px!important}.topbar:after,.content:after{display:none}}
+
+
+
+/* Layout fix: keep the dashboard viewport-sized and scroll only the right column. */
+@media(min-width:981px){
+  html,body{height:100%;min-height:100%;overflow:hidden}
+  .shell{height:100vh;min-height:0;overflow:hidden}
+  main{height:100vh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}
+  .topbar{min-height:105px}
+  .content{min-height:0;height:100%;overflow:hidden;align-items:stretch}
+  .content>section.panel{min-height:0;overflow:auto}
+  .right-col{min-height:0;height:100%;overflow-y:auto;overflow-x:hidden;align-content:start;padding:0 3px 18px 0;scrollbar-width:thin;scrollbar-color:#b8c5ff #f1f3ff}
+  .right-col::-webkit-scrollbar{width:9px}
+  .right-col::-webkit-scrollbar-track{background:#f1f3ff;border-radius:10px}
+  .right-col::-webkit-scrollbar-thumb{background:#b8c5ff;border-radius:10px;border:2px solid #f1f3ff}
+  .sidebar-girl{position:absolute;top:118px;left:26px;width:205px;height:250px;background:url('/profiles/Rikka Takanashi.jpg') center 25%/cover no-repeat;border-radius:100px 100px 24px 24px;border:2px solid #dfe3ff;box-shadow:0 10px 26px #080d4b55;z-index:0;pointer-events:none}
+  .sidebar .brand,.sidebar .nav,.sidebar .side-note{position:relative;z-index:1}
+  .sidebar .nav{margin-top:8px}
+  .side-note:before{display:none}
+}
+@media(max-width:980px){
+  .sidebar-girl{display:none}
+  html,body{height:auto;overflow:auto}
+  main{height:auto;display:block;overflow:visible}
+  .content{height:auto;overflow:visible}
+  .right-col{height:auto;overflow:visible}
+}
+
+
+/* v4 refinements: fixed table viewport, clean anime sidebar, collapsible navigation */
+.shell{grid-template-columns:300px minmax(0,1fr);transition:grid-template-columns .22s ease}
+.sidebar{min-width:0;min-height:0}
+.sidebar-toggle{display:flex;align-items:center;justify-content:center;position:absolute;right:12px;top:12px;width:34px;height:34px;border:1px solid #ffffff35;border-radius:10px;background:#ffffff12;color:#fff;font-size:19px;cursor:pointer;z-index:5}
+.sidebar-toggle:hover{background:#ffffff25}
+.brand{margin-top:26px}
+.sidebar-girl{position:absolute;left:50%;top:auto;bottom:22px;transform:translateX(-50%);width:190px;height:225px;background:url('/profiles/Rikka Takanashi.jpg') center 22%/cover no-repeat;border-radius:90px 90px 22px 22px;border:2px solid #dfe3ff;box-shadow:0 10px 26px #080d4b55;opacity:.92;z-index:0;pointer-events:none}
+.side-note{display:none!important}
+.sidebar .brand,.sidebar .nav{position:relative;z-index:2}
+.sidebar .nav{margin-top:12px}
+.content>section.panel{display:flex;flex-direction:column;min-height:0;height:100%;overflow:hidden}
+.table-wrap{flex:1 1 auto;min-height:120px;max-height:calc(100vh - 340px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b8c5ff #f1f3ff}
+.table-wrap::-webkit-scrollbar{width:9px;height:9px}
+.table-wrap::-webkit-scrollbar-track{background:#f1f3ff;border-radius:10px}
+.table-wrap::-webkit-scrollbar-thumb{background:#b8c5ff;border:2px solid #f1f3ff;border-radius:10px}
+.count{flex:none}
+.shell.sidebar-collapsed{grid-template-columns:82px minmax(0,1fr)}
+.sidebar-collapsed .sidebar{padding:12px 9px}
+.sidebar-collapsed .brand{padding:0!important;min-height:58px;justify-content:center;margin-top:34px}
+.sidebar-collapsed .brand>span:last-child{display:none}
+.sidebar-collapsed .brand-icon{position:static;width:52px;height:52px;border-radius:15px}
+.sidebar-collapsed .sidebar-toggle{right:23px;top:10px;width:34px}
+.sidebar-collapsed .nav button{font-size:0;text-align:center;padding:14px 5px;white-space:nowrap}
+.sidebar-collapsed .nav button .nav-icon{font-size:19px}
+.sidebar-collapsed .nav button .nav-label{display:none}
+.sidebar-collapsed .sidebar-girl{display:none}
+@media(min-width:981px){html,body{height:100%;min-height:100%;overflow:hidden}.shell{height:100vh;min-height:0;overflow:hidden}main{height:100vh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden}.content{min-height:0;height:100%;overflow:hidden;align-items:stretch}.right-col{min-height:0;height:100%;overflow-y:auto;overflow-x:hidden}}
+@media(max-width:980px){.shell,.shell.sidebar-collapsed{grid-template-columns:1fr}.sidebar{padding:12px!important}.sidebar-toggle{top:12px;right:12px}.brand{margin-top:0;padding:0 48px 12px 64px!important;min-height:56px!important}.brand-icon{left:0;top:0;width:52px;height:52px}.sidebar-girl{display:none}.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.nav button{font-size:14px!important;text-align:left!important}.nav button .nav-label{display:inline!important}.nav button .nav-icon{font-size:inherit!important}.content>section.panel{height:auto;overflow:visible}.table-wrap{max-height:55vh;flex:0 1 auto}.sidebar-collapsed .brand{padding:0 48px 12px 64px!important;justify-content:flex-start}.sidebar-collapsed .brand>span:last-child{display:inline}.sidebar-collapsed .brand-icon{position:absolute;width:52px;height:52px}.sidebar-collapsed .nav button{font-size:14px;text-align:left;padding:10px}.sidebar-collapsed .nav button .nav-label{display:inline}.sidebar-collapsed .sidebar-toggle{right:12px}}
+
+
+
+/* v5: compact records card, scroll only the table rows, balanced sidebar */
+@media (min-width:981px){
+  .content{align-items:start!important;overflow:hidden!important}
+  .content>section.panel{
+    align-self:start!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    display:block!important;
+    overflow:visible!important;
+    background:rgba(255,255,255,.88)!important;
+    box-shadow:0 3px 15px #1a3b6208;
+  }
+  .content>section.panel .table-wrap{
+    display:block!important;
+    flex:none!important;
+    height:auto!important;
+    max-height:44vh!important;
+    min-height:0!important;
+    overflow:auto!important;
+    overscroll-behavior:contain;
+  }
+  .content>section.panel .count{margin-top:14px}
+  .sidebar-girl{
+    left:50%!important;top:54%!important;bottom:auto!important;
+    transform:translate(-50%,-50%)!important;
+    width:174px!important;height:216px!important;
+    border-radius:88px 88px 22px 22px!important;
+    opacity:.96!important;
+  }
+  .sidebar:before{top:30%!important;left:18px!important;line-height:2.7!important;font-size:15px!important;opacity:.7!important}
+  .sidebar-toggle{top:auto!important;right:14px!important;bottom:14px!important;width:36px!important;height:36px!important}
+  .sidebar-collapsed .sidebar-toggle{right:14px!important;bottom:14px!important;top:auto!important}
+}
+@media(max-width:980px){
+  .content>section.panel{height:auto!important;min-height:0!important;display:block!important;overflow:visible!important}
+  .content>section.panel .table-wrap{max-height:50vh!important;flex:none!important;overflow:auto!important}
+  .sidebar-toggle{top:auto!important;right:12px!important;bottom:12px!important}
+  .sidebar{padding-bottom:58px!important}
+}
+.sidebar-collapsed .sidebar-girl{display:none!important}
+
+
+
+/* v6: compact records card, clear sidebar composition, and relocated collapse control */
+@media(min-width:981px){
+  .content{align-items:start!important;}
+  .content>section.panel{
+    height:390px!important; max-height:390px!important; min-height:0!important;
+    overflow:hidden!important; display:flex!important; flex-direction:column!important;
+    align-self:start!important; background:rgba(255,255,255,.58)!important;
+    backdrop-filter:blur(2px)!important; box-shadow:0 4px 18px #6277bd0a!important;
+  }
+  .content>section.panel .table-wrap{height:220px!important;max-height:220px!important;min-height:100px!important;flex:1 1 auto!important;overflow:auto!important;background:#ffffffed}
+  .content>section.panel .count{margin-top:12px!important}
+  .sidebar{overflow:hidden!important}
+  .brand{margin-top:12px!important;min-height:62px!important;padding:0 40px 18px 4px!important;justify-content:flex-start!important}
+  .brand-icon{display:none!important}
+  .brand>span:last-child{display:block!important}
+  .sidebar-girl{left:50%!important;top:52%!important;bottom:auto!important;transform:translate(-50%,-50%)!important;width:184px!important;height:226px!important;border-radius:92px 92px 24px 24px!important;opacity:.97!important;z-index:0!important}
+  .sidebar:before{top:31%!important;left:22px!important;line-height:2.5!important;font-size:17px!important;opacity:.62!important}
+  .sidebar-toggle,.sidebar-collapsed .sidebar-toggle{top:auto!important;right:14px!important;bottom:14px!important;width:36px!important;height:36px!important}
+  .sidebar .brand,.sidebar .nav{z-index:2!important}
+  .sidebar .nav{margin-top:4px!important}
+}
+@media(max-width:980px){
+  .brand-icon{display:none!important}
+  .brand{padding:8px 46px 12px 4px!important;min-height:0!important;margin-top:0!important}
+  .sidebar-girl{display:none!important}
+  .content>section.panel{height:auto!important;max-height:none!important;background:rgba(255,255,255,.85)!important}
+  .content>section.panel .table-wrap{max-height:50vh!important;overflow:auto!important}
+  .sidebar-toggle,.sidebar-collapsed .sidebar-toggle{top:auto!important;right:12px!important;bottom:12px!important}
+}
+.sidebar-collapsed .brand{padding:0!important;min-height:44px!important;margin-top:10px!important}
+.sidebar-collapsed .brand-icon{display:none!important}
+.sidebar-collapsed .sidebar-girl{display:none!important}
+
+
+/* v7: random title avatar and clean collapsed header */
+.brand-icon{display:block!important;flex:0 0 auto;width:66px!important;height:66px!important;border-radius:18px!important;background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;border:2px solid #dfe3ff!important;box-shadow:0 5px 16px #080d4b38!important;}
+.brand{display:flex!important;align-items:center!important;gap:12px!important;}
+.brand>span:last-child{display:block!important;min-width:0}
+.sidebar-collapsed .brand{justify-content:center!important;gap:0!important;padding:0!important;}
+.sidebar-collapsed .brand>span:last-child{display:none!important;visibility:hidden!important;width:0!important;overflow:hidden!important;}
+.sidebar-collapsed .brand-icon{display:block!important;width:48px!important;height:48px!important;border-radius:14px!important;}
+@media(min-width:981px){.sidebar-girl{top:57%!important;}}
+@media(max-width:980px){.brand-icon{display:block!important;width:52px!important;height:52px!important}.sidebar-collapsed .brand>span:last-child{display:none!important}.sidebar-collapsed .brand-icon{display:block!important}}
+
+
+/* v8: prevent the random title avatar and title text from overlapping */
+.sidebar .brand{
+  position:relative!important; display:flex!important; flex-flow:row nowrap!important;
+  align-items:center!important; justify-content:flex-start!important;
+  width:100%!important; box-sizing:border-box!important;
+  gap:12px!important; padding:8px 4px 22px!important;
+  margin:0!important; min-height:82px!important;
+}
+.sidebar .brand .brand-icon{
+  position:relative!important; inset:auto!important; display:block!important;
+  flex:0 0 58px!important; width:58px!important; height:58px!important;
+  min-width:58px!important; box-sizing:border-box!important;
+  margin:0!important; z-index:2!important;
+}
+.sidebar .brand>span:last-child{
+  position:relative!important; display:block!important; flex:1 1 0!important;
+  width:auto!important; min-width:0!important; max-width:100%!important;
+  margin:0!important; padding:0!important; overflow-wrap:normal!important;
+  word-break:normal!important; white-space:normal!important;
+  font-size:17px!important; line-height:1.18!important; letter-spacing:-.2px!important;
+  text-align:left!important; z-index:2!important;
+}
+.sidebar-collapsed .brand{
+  min-height:70px!important; height:auto!important; padding:8px 0 18px!important;
+  justify-content:center!important; gap:0!important;
+}
+.sidebar-collapsed .brand .brand-icon{
+  flex:0 0 48px!important; width:48px!important; height:48px!important;
+  min-width:48px!important;
+}
+.sidebar-collapsed .brand>span:last-child{display:none!important;width:0!important;max-width:0!important}
+@media(max-width:980px){
+  .sidebar .brand{padding:8px 44px 14px 4px!important;min-height:72px!important;gap:10px!important}
+  .sidebar .brand .brand-icon{flex-basis:50px!important;width:50px!important;height:50px!important;min-width:50px!important}
+  .sidebar .brand>span:last-child{font-size:16px!important;line-height:1.15!important}
+  .sidebar-collapsed .brand{padding:8px 0 14px!important;justify-content:center!important}
+}
+
 </style>
 </head>
 <body>
 <div class="shell">
 <aside class="sidebar">
-  <div class="brand"><span class="brand-icon">🧑‍🚀</span><span>Persona<br>Management System</span></div>
+  <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Collapse navigation" title="Collapse navigation">‹</button>
+  <div class="sidebar-girl" aria-hidden="true"></div>
+  <div class="brand"><span class="brand-icon" aria-hidden="true"></span><span>Persona<br>Management System</span></div>
   <nav class="nav">
-    <button class="active" data-page="users">♟ &nbsp; Users</button>
-    <button data-page="powers">⚡ &nbsp; Powers</button>
-    <!--<button data-page="api">ⓘ &nbsp; API Info</button>-->
+    <button class="active" data-page="users"><span class="nav-icon">♟</span><span class="nav-label">&nbsp; Users</span></button>
+    <button data-page="powers"><span class="nav-icon">⚡</span><span class="nav-label">&nbsp; Powers</span></button>
   </nav>
-  <div class="side-note">Wait for a Surprise</div>
 </aside>
 <main>
 <header class="topbar"><div><h1 id="page-title">Users</h1><div class="sub" id="page-subtitle">Manage personas using your CRUD API</div></div><div class="status"><span class="pill" id="api-status">● Checking API…</span><span class="endpoint">http://localhost:3000</span></div></header>
@@ -58,11 +294,11 @@ main{min-width:0}.topbar{background:#fff;border-bottom:1px solid var(--line);pad
 <section class="panel">
   <div id="notice" class="notice"></div>
   <div class="toolbar"><input class="search" id="search" placeholder="⌕  Search by name or role…"><button class="btn primary" id="new-btn">＋ Add User</button></div>
-  <div class="table-wrap"><table><thead id="table-head"><tr><th>ID</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead><tbody id="records"></tbody></table></div>
+  <div class="table-wrap"><table><thead id="table-head"><tr><th>ID</th><th>Persona</th><th>Role</th><th>Actions</th></tr></thead><tbody id="records"></tbody></table></div>
   <div class="count" id="record-count">Loading records…</div>
 </section>
 <aside class="right-col">
-  <section class="panel"><h2 id="form-title">Create / Update User</h2><form id="record-form"><div class="field"><label id="label-one" for="field-one">Name *</label><input id="field-one" required maxlength="100" placeholder="Enter user name"></div><div class="field"><label id="label-two" for="field-two">Role *</label><input id="field-two" required maxlength="100" placeholder="Enter user role"></div><button class="btn success full" type="submit" id="submit-btn">＋ Create User</button><button class="btn muted-btn full" type="button" id="cancel-btn" style="display:none;margin-top:8px">Cancel edit</button></form><div class="divider">OR</div><div class="hint" id="form-hint">Tip: use Edit beside a record to load it into this form.</div></section>
+  <section class="panel"><h2 id="form-title">Create / Update User</h2><form id="record-form"><div class="field"><label id="label-one" for="field-one">Name *</label><input id="field-one" required maxlength="100" placeholder="Enter user name"></div><div class="field"><label id="label-two" for="field-two">Role *</label><input id="field-two" required maxlength="100" placeholder="Enter user role"></div><div class="field" id="avatar-field"><label>Anime profile picture</label><div style="display:flex;align-items:center;gap:12px"><img id="avatar-preview" class="avatar-preview" src="/profiles/maomao.jpg" alt="Selected avatar"><span class="sub" id="avatar-help">Choose a local avatar below or upload your own.</span></div><div class="avatar-grid" id="avatar-grid"></div><label class="avatar-upload" for="avatar-upload">Or upload an image from your computer</label><input type="file" id="avatar-upload" accept="image/*" style="padding:8px"></div><button class="btn success full" type="submit" id="submit-btn">＋ Create User</button><button class="btn muted-btn full" type="button" id="cancel-btn" style="display:none;margin-top:8px">Cancel edit</button></form><div class="divider">OR</div><div class="hint" id="form-hint">Tip: use Edit beside a record to load it into this form.</div></section>
   <section class="panel"><h2>Bulk Actions</h2><div class="field"><label for="bulk-ids">Record IDs (comma separated)</label><input id="bulk-ids" placeholder="e.g. 1,2,3"></div><button class="btn danger full" id="bulk-delete">▤ Delete Selected</button><p class="sub" style="font-size:12px;margin-bottom:0">Deletion asks for confirmation first.</p></section>
 </aside>
 </div>
@@ -105,13 +341,51 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 function notice(message,type='ok'){const n=$('notice');n.textContent=message;n.className='notice show '+type;setTimeout(()=>n.classList.remove('show'),4000)}
 async function request(path,options={}){const r=await fetch(API+path,{...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});const body=await r.json().catch(()=>null);if(!r.ok)throw new Error(body?.message||`Request failed (${r.status})`);return body}
 async function checkApi(){try{await fetch(API+'/users');$('api-status').textContent='● API Online';$('api-status').style.background='#e7f8ef';$('api-status').style.color='#167747'}catch{$('api-status').textContent='● API Offline';$('api-status').style.background='#fff0f0';$('api-status').style.color='#a3242a'}}
+
+const builtInAvatars=[
+  '/profiles/maomao.jpg','/profiles/Maomao icon   𖤐.jpg','/profiles/Anna Yanami.jpg',
+  '/profiles/Rikka Takanashi.jpg','/profiles/tokisaki kurumi.jpg',
+  '/profiles/Himmel - Sousou no Frieren_ ●● no Mahou.jpg',
+  '/profiles/download.jpg','/profiles/download (1).jpg','/profiles/download (2).jpg',
+  '/profiles/download (3).jpg','/profiles/[2512] Avatar 𓂃꙳⋆.jpg','/profiles/[2515] Avatar 𓂃꙳⋆.jpg'
+];
+let selectedAvatar=builtInAvatars[0];
+let avatarMap={};
+try{avatarMap=JSON.parse(localStorage.getItem('crudapi-avatar-map')||'{}')}catch{avatarMap={}}
+function saveAvatarMap(){try{localStorage.setItem('crudapi-avatar-map',JSON.stringify(avatarMap))}catch{notice('Avatar storage is full. Please use a built-in avatar instead.','error')}}
+function avatarFor(record){return avatarMap[`${page}-${record.id}`]||builtInAvatars[(Math.max(1,Number(record.id)||1)-1)%builtInAvatars.length]}
+function buildAvatarPicker(){
+ const grid=$('avatar-grid'); if(!grid)return;
+ grid.innerHTML=builtInAvatars.map(src=>`<button type="button" class="avatar-choice ${src===selectedAvatar?'selected':''}" data-avatar="${esc(src)}" title="Choose avatar"><img src="${esc(src)}" alt="Anime avatar" loading="lazy"></button>`).join('');
+ grid.querySelectorAll('[data-avatar]').forEach(btn=>btn.addEventListener('click',()=>{selectedAvatar=btn.dataset.avatar;$('avatar-preview').src=selectedAvatar;$('avatar-upload').value='';buildAvatarPicker()}));
+}
+$('avatar-upload')?.addEventListener('change',e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ if(!file.type.startsWith('image/')){notice('Please choose an image file.','error');return}
+ if(file.size>2*1024*1024){notice('Please choose an image smaller than 2 MB.','error');e.target.value='';return}
+ const reader=new FileReader();reader.onload=()=>{selectedAvatar=String(reader.result);$('avatar-preview').src=selectedAvatar;buildAvatarPicker()};reader.readAsDataURL(file);
+});
+buildAvatarPicker();
+const shell=document.querySelector('.shell');
+const sidebarToggle=$('sidebar-toggle');
+const titleAvatarChoices=[
+  '/profiles/maomao.jpg','/profiles/Maomao icon   𖤐.jpg','/profiles/Anna Yanami.jpg',
+  '/profiles/Rikka Takanashi.jpg','/profiles/tokisaki kurumi.jpg',
+  '/profiles/Himmel - Sousou no Frieren_ ●● no Mahou.jpg',
+  '/profiles/download.jpg','/profiles/download (1).jpg','/profiles/download (2).jpg',
+  '/profiles/download (3).jpg','/profiles/[2512] Avatar 𓂃꙳⋆.jpg','/profiles/[2515] Avatar 𓂃꙳⋆.jpg'
+];
+const brandIcon=document.querySelector('.brand-icon');
+function randomizeTitleAvatar(){if(!brandIcon)return;const current=brandIcon.dataset.avatar;let choices=titleAvatarChoices.filter(src=>src!==current);const src=choices[Math.floor(Math.random()*choices.length)]||titleAvatarChoices[0];brandIcon.dataset.avatar=src;brandIcon.style.backgroundImage=`url("${src.replaceAll('"','\\"')}")`;}
+randomizeTitleAvatar();
+sidebarToggle?.addEventListener('click',()=>{const collapsed=shell.classList.toggle('sidebar-collapsed');sidebarToggle.textContent=collapsed?'›':'‹';sidebarToggle.setAttribute('aria-label',collapsed?'Expand navigation':'Collapse navigation');sidebarToggle.title=collapsed?'Expand navigation':'Collapse navigation';if(!collapsed)randomizeTitleAvatar()});
 function configurePage(){const users=page==='users';$('page-title').textContent=users?'Users':page==='powers'?'Powers':'API Info';$('page-subtitle').textContent=users?'Manage personas using your CRUD API':page==='powers'?'Manage powers and abilities':'Local API connection details';document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('main-content').style.display=page==='api'?'block':'grid';if(page==='api'){$('main-content').innerHTML='<section class="panel"><h2>API Connection</h2><p><b>Base URL:</b> http://localhost:3000</p><p><b>Users:</b> GET/POST /users, GET/PUT/DELETE /users/:id, PUT/DELETE /users for bulk actions</p><p><b>Powers:</b> GET/POST /powers, GET/PUT /powers/:id</p><p>Data is currently stored in memory and resets when the server restarts.</p><button class="btn primary" onclick="location.reload()">Back to dashboard</button></section>';return}renderForm();loadRecords()}
 async function loadRecords(){if(page==='api')return;try{records=await request('/'+page);if(!Array.isArray(records))records=[];renderRecords();checkApi()}catch(e){records=[];renderRecords();notice('Could not load API data. Start your server with npm run dev.', 'error');$('api-status').textContent='● API Offline'}}
-function renderRecords(){const term=$('search').value.trim().toLowerCase();const filtered=records.filter(r=>Object.values(r).some(v=>String(v).toLowerCase().includes(term)));const power=page==='powers';$('table-head').innerHTML=power?'<tr><th>ID</th><th>Power name</th><th>Type</th><th>Actions</th></tr>':'<tr><th>ID</th><th>Name</th><th>Role</th><th>Actions</th></tr>';$('records').innerHTML=filtered.map(r=>`<tr><td>${esc(r.id)}</td><td>${esc(power?(r.powerName??r.name):r.name)}</td><td>${esc(power?r.type:r.role)}</td><td><div class="actions"><button class="btn outline small" data-edit="${r.id}">✎ Edit</button><button class="btn danger small" data-delete="${r.id}">▤ Delete</button></div></td></tr>`).join('');$('record-count').textContent=`Showing ${filtered.length} of ${records.length} ${power?'powers':'users'}`;$('new-btn').textContent=power?'＋ Add Power':'＋ Add User'}
-function renderForm(){const power=page==='powers';$('form-title').textContent=`Create / Update ${power?'Power':'User'}`;$('label-one').textContent=power?'Power name *':'Name *';$('label-two').textContent=power?'Type *':'Role *';$('field-one').placeholder=power?'Enter power name':'Enter user name';$('field-two').placeholder=power?'Enter power type':'Enter user role';$('submit-btn').textContent=`＋ ${editingId?'Update': 'Create'} ${power?'Power':'User'}`;$('cancel-btn').style.display=editingId?'block':'none'}
-function clearForm(){editingId=null;$('record-form').reset();renderForm()}
-$('record-form').addEventListener('submit',async e=>{e.preventDefault();const power=page==='powers';const payload=power?{powerName:$('field-one').value.trim(),name:$('field-one').value.trim(),type:$('field-two').value.trim()}:{name:$('field-one').value.trim(),role:$('field-two').value.trim()};try{if(editingId){await request(`/${page}/${editingId}`,{method:'PUT',body:JSON.stringify(payload)});notice('Record updated successfully!')}else{await request('/'+page,{method:'POST',body:JSON.stringify(payload)});window.playCreateAnvil?.();notice('Record created successfully!')}clearForm();loadRecords()}catch(err){notice(err.message,'error')}});
-$('records').addEventListener('click',async e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit){const r=records.find(x=>x.id===Number(edit.dataset.edit));if(!r)return;editingId=r.id;$('field-one').value=page==='powers'?(r.powerName??r.name):r.name;$('field-two').value=page==='powers'?r.type:r.role;renderForm();$('field-one').focus()}if(del){const id=Number(del.dataset.delete);if(!confirm(`⚠️ Are you sure you want to permanently delete this ${page==='powers'?'power':'user'} (#${id})? This action cannot be undone.`))return;try{if(page==='users')await request('/users/'+id,{method:'DELETE'});else throw new Error('The current API does not yet have a working single-power DELETE /powers/:id route.');window.playDeleteOof?.();notice('Record deleted.');if(editingId===id)clearForm();loadRecords()}catch(err){notice(err.message,'error')}}});
+function renderRecords(){const term=$('search').value.trim().toLowerCase();const filtered=records.filter(r=>Object.values(r).some(v=>String(v).toLowerCase().includes(term)));const power=page==='powers';$('table-head').innerHTML=power?'<tr><th>ID</th><th>Power name</th><th>Type</th><th>Actions</th></tr>':'<tr><th>ID</th><th>Name</th><th>Role</th><th>Actions</th></tr>';$('records').innerHTML=filtered.map(r=>`<tr><td>${esc(r.id)}</td><td>${power?esc(r.powerName??r.name):`<div class="avatar-cell"><img class="persona-avatar" src="${esc(avatarFor(r))}" alt="" loading="lazy"><strong>${esc(r.name)}</strong></div>`}</td><td>${esc(power?r.type:r.role)}</td><td><div class="actions"><button class="btn outline small" data-edit="${r.id}">✎ Edit</button><button class="btn danger small" data-delete="${r.id}">▤ Delete</button></div></td></tr>`).join('');$('record-count').textContent=`Showing ${filtered.length} of ${records.length} ${power?'powers':'users'}`;$('new-btn').textContent=power?'＋ Add Power':'＋ Add User'}
+function renderForm(){const power=page==='powers';$('avatar-field').style.display=power?'none':'block';$('form-title').textContent=`Create / Update ${power?'Power':'User'}`;$('label-one').textContent=power?'Power name *':'Name *';$('label-two').textContent=power?'Type *':'Role *';$('field-one').placeholder=power?'Enter power name':'Enter user name';$('field-two').placeholder=power?'Enter power type':'Enter user role';$('submit-btn').textContent=`＋ ${editingId?'Update': 'Create'} ${power?'Power':'User'}`;$('cancel-btn').style.display=editingId?'block':'none'}
+function clearForm(){editingId=null;$('record-form').reset();selectedAvatar=builtInAvatars[0];$('avatar-preview').src=selectedAvatar;buildAvatarPicker();renderForm()}
+$('record-form').addEventListener('submit',async e=>{e.preventDefault();const power=page==='powers';const payload=power?{powerName:$('field-one').value.trim(),name:$('field-one').value.trim(),type:$('field-two').value.trim()}:{name:$('field-one').value.trim(),role:$('field-two').value.trim()};try{if(editingId){await request(`/${page}/${editingId}`,{method:'PUT',body:JSON.stringify(payload)});if(!power){avatarMap[`users-${editingId}`]=selectedAvatar;saveAvatarMap()}notice('Record updated successfully!')}else{const created=await request('/'+page,{method:'POST',body:JSON.stringify(payload)});if(!power){const added=created.user;const list=Array.isArray(added)?added:[added];list.forEach(r=>{if(r?.id)avatarMap[`users-${r.id}`]=selectedAvatar});saveAvatarMap()}window.playCreateAnvil?.();notice('Record created successfully!')}clearForm();loadRecords()}catch(err){notice(err.message,'error')}});
+$('records').addEventListener('click',async e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit){const r=records.find(x=>x.id===Number(edit.dataset.edit));if(!r)return;editingId=r.id;if(page==='users'){selectedAvatar=avatarFor(r);$('avatar-preview').src=selectedAvatar;buildAvatarPicker()}$('field-one').value=page==='powers'?(r.powerName??r.name):r.name;$('field-two').value=page==='powers'?r.type:r.role;renderForm();$('field-one').focus()}if(del){const id=Number(del.dataset.delete);if(!confirm(`⚠️ Are you sure you want to permanently delete this ${page==='powers'?'power':'user'} (#${id})? This action cannot be undone.`))return;try{if(page==='users')await request('/users/'+id,{method:'DELETE'});else throw new Error('The current API does not yet have a working single-power DELETE /powers/:id route.');window.playDeleteOof?.();notice('Record deleted.');if(editingId===id)clearForm();loadRecords()}catch(err){notice(err.message,'error')}}});
 $('new-btn').addEventListener('click',()=>{clearForm();$('field-one').focus()});$('cancel-btn').addEventListener('click',clearForm);$('search').addEventListener('input',renderRecords);
 $('bulk-delete').addEventListener('click',async()=>{const ids=$('bulk-ids').value.split(',').map(v=>Number(v.trim())).filter(Number.isInteger).filter(v=>v>0);if(!ids.length)return notice('Enter one or more valid IDs.','error');if(!confirm(`⚠️ Are you sure you want to permanently delete ${ids.length} selected record(s)? This action cannot be undone.`))return;try{if(page!=='users')throw new Error('Bulk delete is currently supported for users only in this API.');await request('/users',{method:'DELETE',body:JSON.stringify({ids})});$('bulk-ids').value='';window.playDeleteOof?.();notice('Selected users deleted.');loadRecords()}catch(e){notice(e.message,'error')}});
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{page=b.dataset.page;configurePage()}));
